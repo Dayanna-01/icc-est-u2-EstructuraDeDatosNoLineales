@@ -16,11 +16,11 @@ Además, se implementó un método size() con complejidad O(1) utilizando un con
 
 ## Evidencias
 ### Captura 1
-![alt text](assets/image.png)
+![alt text](assets/Order.png)
 - Y también muestra el tamaño total del árbol, que es calculado en O(1) porque size() solo devuelve el valor del contador interno.
 
-### Captura 2
-![alt text](assets/Clase1.png)
+### Captura 2 
+![alt text](assets/Size.png)
 - La evidencia muestra:
 el atributo private int size;
 el incremento del contador dentro de insert()
