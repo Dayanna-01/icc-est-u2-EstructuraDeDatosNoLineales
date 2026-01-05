@@ -1,4 +1,4 @@
-# Práctica: Estructuras No Lineales - 
+# Práctica: Estructuras No Lineales 
 
 ## Autor
 - Nombre: Janelly Dayanna Chacha Velez
