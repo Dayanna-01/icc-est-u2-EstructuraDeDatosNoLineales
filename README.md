@@ -26,3 +26,10 @@ el atributo private int size;
 el incremento del contador dentro de insert()
 el método size() que simplemente retorna el contador
 Esto demuestra que el tamaño no se calcula recorriendo el árbol, sino leyendo una variable almacenada.
+
+### Captura 3
+![alt text](assets/Generico.png)
+- El método searchByAge recorre el árbol en orden (izquierda, nodo, derecha) y en cada nodo verifica si el valor es una Person. Si lo es, compara su edad con la buscada y, si coinciden, la imprime. Así recorre todo el árbol y muestra todas las personas que tienen esa edad.
+
+### Captura 4
+![alt text](assets/InOrder.png)
