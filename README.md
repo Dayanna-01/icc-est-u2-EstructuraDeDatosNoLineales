@@ -5,7 +5,7 @@
 - Carrera/Curso: Computacion
 
 
-##  Nombre de la práctica - Fecha
+##  Práctica de Árboles – Implementación Integers - 2026-01-05
 - Práctica: Práctica de Árboles – Implementación Integers
 - Fecha: 2026-01-05
 
