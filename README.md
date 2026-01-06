@@ -32,4 +32,5 @@ Esto demuestra que el tamaño no se calcula recorriendo el árbol, sino leyendo 
 - El método searchByAge recorre el árbol en orden (izquierda, nodo, derecha) y en cada nodo verifica si el valor es una Person. Si lo es, compara su edad con la buscada y, si coinciden, la imprime. Así recorre todo el árbol y muestra todas las personas que tienen esa edad.
 
 ### Captura 4
+- InOrder y la aptura del resultado de la busqueda en consola de una persona por edad.
 ![alt text](assets/InOrder.png)
