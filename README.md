@@ -34,3 +34,9 @@ Esto demuestra que el tamaño no se calcula recorriendo el árbol, sino leyendo 
 ### Captura 4
 - InOrder y la aptura del resultado de la busqueda en consola de una persona por edad.
 ![alt text](assets/InOrder.png)
+
+### Captura 5
+![alt text](assets/GRAPH.png)
+
+### Captura 6
+![alt text](assets/Salida.png)

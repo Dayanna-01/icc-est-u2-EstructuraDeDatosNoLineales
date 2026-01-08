@@ -1,9 +1,14 @@
 package nodes;
 
+import java.util.List;
+
 public class Node<T> {
     private T value;
     private Node<T> left;
     private Node<T> right; 
+
+    // Listado de los nodos conocidos
+    private List<Node<T>> conocidos;
     
     public Node(T value) {
         this.value = value;
@@ -28,5 +33,26 @@ public class Node<T> {
     public void setRight(Node<T> right) {
         this.right = right;
     }
+
+    @Override
+    public String toString() {
+        return "N [" + value + "]";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Node<?> other = (Node<?>) obj;
+        return value.equals(other.value);
+    }
     
+    @Override
+    public int hashCode() {
+        return value.hashCode();
+    } 
 }
