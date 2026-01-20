@@ -2,8 +2,13 @@ package graphs;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
 
 import nodes.Node;
 public class Graph<T> {
@@ -33,6 +38,9 @@ public class Graph<T> {
         // listadoNodo1.add(n2);
         mapa.get(n1).add(n2);
         mapa.get(n2).add(n1);
+        /// Del mapa obtengo el listado
+        /// get(n1) -> listado N1
+        /// get(n2) -> agrega N2 alistado N1
     }
 
     public void printGraph() {
@@ -48,6 +56,27 @@ public class Graph<T> {
     public Node<T>[] getNeighbors(Node<T> node) {
     List<Node<T>> neighbors = mapa.get(node);
     return neighbors.toArray(new Node[0]);
+}
+
+public void bfs(Node<T> start) {
+    Set<Node<T>> visitados = new LinkedHashSet<>();
+    Queue<Node<T>> queue = new LinkedList<>();
+
+    visitados.add(start);
+    queue.add(start);
+
+    while (!queue.isEmpty()) { //Pra romper, vacia cola
+        Node<T> current = queue.poll();
+        System.out.println(current.getValue() + " ");
+        
+        for (Node<T> conocido : getNeighbors(current)) {
+            if (!visitados.contains(conocido)) {
+                visitados.add(current);
+                queue.add(current);
+
+            }
+        }
+    }
 }
 
 
