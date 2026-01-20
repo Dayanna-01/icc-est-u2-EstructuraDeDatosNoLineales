@@ -58,26 +58,39 @@ public class Graph<T> {
     return neighbors.toArray(new Node[0]);
 }
 
-public void bfs(Node<T> start) {
-    Set<Node<T>> visitados = new LinkedHashSet<>();
-    Queue<Node<T>> queue = new LinkedList<>();
-
-    visitados.add(start);
-    queue.add(start);
-
-    while (!queue.isEmpty()) { //Pra romper, vacia cola
-        Node<T> current = queue.poll();
-        System.out.println(current.getValue() + " ");
+    // BFS PARA EL PROYECTO
+    public void bfs(Node<T> start) {
+        Set<Node<T>> visitados = new LinkedHashSet<>();
+        Queue<Node<T>> queue = new LinkedList<>();
+        visitados.add(start);
+        queue.add(start);
+        while (!queue.isEmpty()) { //Pra romper, vacia cola
+            Node<T> current = queue.poll();
+            System.out.println(current.getValue() + " ");
         
+            for (Node<T> conocido : getNeighbors(current)) {
+                if (!visitados.contains(conocido)) {
+                    visitados.add(current);
+                    queue.add(current);
+                }
+            }
+        }
+    }
+
+    // DFS PARA EL PROYECTO
+    public void dfs(Node<T> start) {
+        Set<Node<T>> visitados = new LinkedHashSet<>();
+        dfsRecursive(start, visitados);
+    }
+
+    private void dfsRecursive(Node<T> current, Set<Node<T>> visitados) {
+        visitados.add(current);
+        System.err.println(current.getValue() + " ");
         for (Node<T> conocido : getNeighbors(current)) {
             if (!visitados.contains(conocido)) {
-                visitados.add(current);
-                queue.add(current);
-
+                dfsRecursive(conocido, visitados);
             }
         }
     }
 }
 
-
-}
