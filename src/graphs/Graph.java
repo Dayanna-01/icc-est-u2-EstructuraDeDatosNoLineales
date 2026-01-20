@@ -2,7 +2,6 @@ package graphs;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,22 +10,23 @@ import java.util.Queue;
 import java.util.Set;
 
 import nodes.Node;
+
 public class Graph<T> {
     // 1ra forma
     // Trabaja con listado en adyancencia
-    //List<Node<T>> nodes;
+    // List<Node<T>> nodes;
 
     // 2da forma
     private Map<Node<T>, List<Node<T>>> mapa;
 
     public Graph() {
-        this.mapa = new HashMap<Node<T>, List<Node<T>>>();  
+        this.mapa = new HashMap<Node<T>, List<Node<T>>>();
     }
     
-    // Inserta un vertice o un nodo 
+    // Inserta un vertice o un nodo
     public void addNode(Node<T> node) {
         this.mapa.putIfAbsent(node, new ArrayList<>());
-        //mapa { N1: [N2], N2: [N1], n2: [N1]}
+        // mapa { N1: [N2], N2: [N1] }
     }
 
     // Grafo no dirigido
@@ -40,38 +40,38 @@ public class Graph<T> {
         mapa.get(n2).add(n1);
         /// Del mapa obtengo el listado
         /// get(n1) -> listado N1
-        /// get(n2) -> agrega N2 alistado N1
+        /// get(n2) -> agrega N2 al listado N1
     }
 
     public void printGraph() {
-        for (Map.Entry<Node<T>, List<Node<T>>> entry : mapa.entrySet()) {
-            System.out.print(entry.getKey() + " -> ");
-            for (Node<T> neighbor : entry.getValue()) {
-                System.out.print(neighbor + " ");
+        for (Node<T> node : mapa.keySet()) {
+            System.out.print(node.getValue() + " -> ");
+            for (Node<T> conocido : mapa.get(node)) {
+                System.out.print(conocido.getValue() + " ");
             }
-            System.out.println();
         }
     }
 
-    public Node<T>[] getNeighbors(Node<T> node) {
-    List<Node<T>> neighbors = mapa.get(node);
-    return neighbors.toArray(new Node[0]);
-}
+    public List<Node<T>> getNeighbors(Node<T> node) {
+        return mapa.getOrDefault(node, new ArrayList<>());
+    }
 
     // BFS PARA EL PROYECTO
     public void bfs(Node<T> start) {
         Set<Node<T>> visitados = new LinkedHashSet<>();
-        Queue<Node<T>> queue = new LinkedList<>();
+        Queue<Node<T>> cola = new LinkedList<>();
+
         visitados.add(start);
-        queue.add(start);
-        while (!queue.isEmpty()) { //Pra romper, vacia cola
-            Node<T> current = queue.poll();
-            System.out.println(current.getValue() + " ");
-        
-            for (Node<T> conocido : getNeighbors(current)) {
+        cola.add(start);
+
+        while (!cola.isEmpty()) {
+            Node<T> actual = cola.poll();
+            System.out.print(actual.getValue());
+
+            for (Node<T> conocido : getNeighbors(actual)) {
                 if (!visitados.contains(conocido)) {
-                    visitados.add(current);
-                    queue.add(current);
+                    visitados.add(conocido);
+                    cola.add(conocido);
                 }
             }
         }
@@ -83,14 +83,26 @@ public class Graph<T> {
         dfsRecursive(start, visitados);
     }
 
-    private void dfsRecursive(Node<T> current, Set<Node<T>> visitados) {
-        visitados.add(current);
-        System.err.println(current.getValue() + " ");
-        for (Node<T> conocido : getNeighbors(current)) {
+    private void dfsRecursive(Node<T> actual, Set<Node<T>> visitados) {
+        visitados.add(actual);
+        System.out.print(actual.getValue());
+
+        for (Node<T> conocido : getNeighbors(actual)) {
             if (!visitados.contains(conocido)) {
                 dfsRecursive(conocido, visitados);
             }
         }
     }
-}
 
+
+    public void addConocido(Node<T> a, Node<T> b) {
+        if (!mapa.containsKey(a)) {
+            mapa.put(a, new ArrayList<>());
+        }
+        if (!mapa.containsKey(b)) {
+            mapa.put(b, new ArrayList<>());
+        }
+        mapa.get(a).add(b);
+        mapa.get(b).add(a);
+    }
+}

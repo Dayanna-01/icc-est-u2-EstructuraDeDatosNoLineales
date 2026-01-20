@@ -40,3 +40,6 @@ Esto demuestra que el tamaño no se calcula recorriendo el árbol, sino leyendo 
 
 ### Captura 6
 ![alt text](assets/Salida.png)
+
+### Captura 7 - BFS y DFS
+![alt text](assets/GrafosClases.png)
