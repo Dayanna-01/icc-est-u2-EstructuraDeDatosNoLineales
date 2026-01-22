@@ -1,4 +1,9 @@
+import java.nio.file.Path;
+
 import graphs.Graph;
+import graphs.PathFinder;
+import graphs.PathResult;
+import graphs.implementations.BFSPathFinder;
 import models.Person;
 import nodes.Node;
 import trees.IntTree;
@@ -82,13 +87,18 @@ public class App {
         Node<Person> pA30 = new Node<>(new Person("Ana", 30));
         Node<Person> pJ25 = new Node<>(new Person("Juan", 25));
         Node<Person> pAn20 = new Node<>(new Person("Ana", 20));
+        Node<Person> pM10 = new Node<>(new Person("Mateo", 10));
+        Node<Person> pJ10 = new Node<>(new Person("Julio", 10));
+
 
         grafo.addEdge(pC23, pA30);
         grafo.addConocido(pC23, pL18);
         grafo.addConocido(pC23, pA23);
         grafo.addConocido(pL18, pJ25);
         grafo.addEdge(pL18, pA23);
-        grafo.addConocido(pA30, pAn20);
+        grafo.addConocido(pAn20, pA30);
+        grafo.addEdge(pA30, pM10);
+        grafo.addEdge(pM10, pJ10);
 
 
         System.out.print("\nGraph completo");
@@ -101,5 +111,24 @@ public class App {
 
         System.out.print("\nDFS");
         grafo.dfs(pC23);
+
+
+        System.out.println("PATHS");
+        PathFinder<Person> finder = new BFSPathFinder<>();
+        PathResult<Person> resultado = finder.find(grafo, pC23, pJ10);
+        System.err.println("\nOrden BSF");
+        resultado.getVisitados().forEach(nodo -> System.out.print(nodo.getValue()));
+        System.out.println();
+        System.err.println("\nRuta encontrada por BFS");
+        resultado.getPath().forEach(nodo -> System.out.print(nodo.getValue() + " "));
+        System.out.println();
+        System.err.println("\nOrden DFS");
+        resultado.getVisitados().forEach(nodo -> System.out.print(nodo.getValue()));
+        System.out.println();
+        System.err.println("\nRuta encontrada por DFS");
+        resultado.getPath().forEach(nodo -> System.out.print(nodo.getValue() + " "));
     }
+
+
+
 }

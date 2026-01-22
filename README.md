@@ -43,3 +43,6 @@ Esto demuestra que el tamaño no se calcula recorriendo el árbol, sino leyendo 
 
 ### Captura 7 - BFS y DFS
 ![alt text](assets/GrafosClases.png)
+
+### Captura 8 - Ruta encontrada de BFS y DFS
+![alt text](assets/BFSyDFS.png)
